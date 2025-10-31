@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import api from '../api';
 
 const AddVitals = () => {
   const [formData, setFormData] = useState({
@@ -26,7 +26,7 @@ const AddVitals = () => {
     };
 
     try {
-      await axios.post('http://localhost:5000/api/vitals', formData, config);
+      await api.post('/vitals', formData, config);
       navigate('/');
     } catch (err) {
       console.error(err);

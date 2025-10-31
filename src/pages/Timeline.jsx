@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
+import api from '../api';
 
 const Timeline = () => {
   const [timelineItems, setTimelineItems] = useState([]);
@@ -15,8 +15,8 @@ const Timeline = () => {
       };
 
       try {
-        const reportsRes = await axios.get('http://localhost:5000/api/reports', config);
-        const vitalsRes = await axios.get('http://localhost:5000/api/vitals', config);
+        const reportsRes = await api.get('/reports', config);
+        const vitalsRes = await api.get('/vitals', config);
 
         const reports = reportsRes.data.map(item => ({ ...item, type: 'report' }));
         const vitals = vitalsRes.data.map(item => ({ ...item, type: 'vital' }));

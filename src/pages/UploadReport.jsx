@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import api from '../api';
 
 const UploadReport = () => {
   const [formData, setFormData] = useState({
@@ -35,7 +35,7 @@ const UploadReport = () => {
     };
 
     try {
-      await axios.post('http://localhost:5000/api/reports', data, config);
+      await api.post('/reports', data, config);
       navigate('/');
     } catch (err) {
       console.error(err);

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
+import api from '../api';
 
 const Dashboard = () => {
   const [reports, setReports] = useState([]);
@@ -16,10 +16,10 @@ const Dashboard = () => {
       };
 
       try {
-        const reportsRes = await axios.get('http://localhost:5000/api/reports', config);
+        const reportsRes = await api.get('/reports', config);
         setReports(reportsRes.data);
 
-        const vitalsRes = await axios.get('http://localhost:5000/api/vitals', config);
+        const vitalsRes = await api.get('/vitals', config);
         setVitals(vitalsRes.data);
       } catch (err) {
         console.error(err);

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import axios from 'axios';
+import api from '../api';
 
 const ViewReport = () => {
   const { id } = useParams();
@@ -17,7 +17,7 @@ const ViewReport = () => {
       };
 
       try {
-        const res = await axios.get(`http://localhost:5000/api/reports/${id}`, config);
+        const res = await api.get(`/reports/${id}`, config);
         setReport(res.data);
       } catch (err) {
         console.error(err);
@@ -37,7 +37,7 @@ const ViewReport = () => {
     };
 
     try {
-      const res = await axios.post(`http://localhost:5000/api/reports/summary/${id}`, {}, config);
+      const res = await api.post(`/reports/summary/${id}`, {}, config);
       setReport(res.data);
     } catch (err) {
       console.error(err);
